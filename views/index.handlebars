@@ -1,0 +1,79 @@
+<!-- ========================================== --->
+<h3> Welcome testuser1@test.com!</h3>
+<br>
+<h3>sign out</h3>
+<br>
+<h1>Project Management Tool</h1>
+<br>
+<h2>Create a new person<h2>
+
+{{!-- Tasks list --}}
+<div class="input-group">
+  <ul class="list-group">
+    {{#each Task}}
+          {{#unless this.destroyed}}
+          <li class="list-group-item">
+            <div class="input-group">
+              <p class="lead"> {{Person.name}} </p>
+              <i class="lead">{{this.task}} </i>
+               <span class="input-group-btn">
+                <form action="people/1/{{this.id}}?_method=PUT" method="POST">
+                  <input type="hidden" name="destroy" value="true">
+                  <button class="btn btn-default btn-lg" type="submit"> Submit!</button>
+                </form>
+              </span>
+            </div>
+          </li>
+          {{/unless}}
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+
+
+  {{!-- Tasks list after exchange --}}
+  <div class="row">
+    <div class="col-md-4 col-md-offset-2">
+      <div class="panel panel-default">
+        <ul class="list-group">
+        {{#each Task}}
+          {{#if this.exchanged}}
+          <li class="list-group-item">
+            <p class="lead">{{Person.name}} </p>
+            <i class="lead">{{this.task}} </i>
+          {{/if}}
+        {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-10 col-md-offset-1">
+    <p class="lead"> Enter the name of the Person you want and the tasks associated with & click the submit button. </p>
+
+    {{!-- section to add persons --}}
+    <form class="create-update-form" action="products/create" method="POST">
+      <div class="form-group">
+        <label for="name" class="cols-sm-2 control-label">name</label>
+        <div class="cols-sm-10">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-star fa-lg" aria-hidden="true"></i></span>
+            <input type="text" class="form-control" name="name" id="person-input"  placeholder="Add the name of the person">
+          </div>
+        </div>
+      </div>
+       <button class="btn btn-default btn-lg" type="submit">Submit!</button>
+
+      <div class="form-group">
+        <label for="task" class="cols-sm-2 control-label">task</label>
+        <div class="cols-sm-10">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-dollar fa-lg" aria-hidden="true"></i></span>
+            <input type="text" class="form-control" name="task" id="task-input"  placeholder="add task here">
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-default btn-lg" type="submit">Submit!</button>
+    </form>
+  </div>
+</div>
