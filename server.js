@@ -18,6 +18,9 @@ var PORT = process.env.PORT || 8080;
 // Requiring our models for syncing
 var db = require("./models");
 
+
+app.use(express.static(process.cwd() + "/public"));
+
 // override POST to have DELETE and PUT
 app.use(methodOverride('_method'))
 
@@ -58,13 +61,13 @@ app.use(function(req, res, next) {
 
 // error handler
 // no stacktraces leaked to user unless in development environment
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: (app.get('env') === 'development') ? err : {}
-  });
-});
+//app.use(function(err, req, res, next) {
+//  res.status(err.status || 500);
+ // res.render('error', {
+ //   message: err.message,
+ //   error: (app.get('env') === 'development') ? err : {}
+ // });
+//});
 
 
 // Syncing our sequelize models and then starting our express app

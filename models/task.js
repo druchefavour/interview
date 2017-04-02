@@ -31,9 +31,9 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         Task.belongsTo(models.Person, {
-          //foreignKey: {
-            //allowNull: false
-          //}
+          foreignKey: {
+            allowNull: false
+          }
         });
       }
     }
